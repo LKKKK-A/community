@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.community.mapper.DiscussPostMapper">
+    <sql id="discussPostFields">
+        id,user_id,title,content,type,status,create_time,comment_count,score
+    </sql>
+    <resultMap id="discusspostMap" type="discussPost">
+        <result column="user_id" property="userId"></result>
+        <result column="create_time" property="createTime"></result>
+    </resultMap>
+    <select id="selectDiscussPosts" resultMap="discusspostMap">
+        select <include refid="discussPostFields"></include>
+        from discuss_post where status != 2
+        <if test="userId != 0">
+            and user_id = #{userId}
+        </if>
+        order by type desc,create_time desc
+        limit #{offset},#{limit}
+    </select>
+
+    <select id="selectDiscussPostRows" resultType="int">
+        select count(id) from discuss_post
+        where status != 2
+        <if test="userId != 0">
+            and user_id = #{userId}
+        </if>
+    </select>
+
+
+
+</mapper>

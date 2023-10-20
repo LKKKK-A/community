@@ -1,0 +1,31 @@
+#ServerProperties
+server:
+  port: 8081
+  servlet:
+    context-path: /community
+
+
+
+spring:
+  thymeleaf:
+    cache: false
+  application:
+    name: community
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/community
+      username: root
+      password: 123456
+
+mybatis:
+  type-aliases-package: com.example.community
+  mapper-locations: classpath:com/example/community/mapper/*.xml
+
+#logger
+#logging:
+#  level:
+#    com.example.community: debug
+#  file:
+#    name: d:/springboot/community/community.log
+
