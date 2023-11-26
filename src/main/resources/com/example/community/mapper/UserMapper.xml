@@ -38,7 +38,7 @@
     </update>
 
     <update id="updateStatus" >
-        update user set status = #{status} where id = #{status};
+        update user set status = #{status} where id = #{id};
     </update>
 
     <update id="updatePassword">

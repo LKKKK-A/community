@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  * @program: community
  * @description:
@@ -22,10 +25,21 @@ public class DiscussPostTest {
     @Test
     void selectTest(){
         System.out.println(discussPostMapper.selectDiscussPostRows(103));
-        for (DiscussPost discussPost : discussPostMapper.selectDiscussPosts(103, 0, 10)) {
+        for (DiscussPost discussPost : discussPostMapper.selectDiscussPosts(103, 0, 1)) {
             System.out.println(discussPost);
         }
     }
+
+    @Test
+    void insertTest(){
+        List<DiscussPost> list = discussPostMapper.selectDiscussPosts(103, 0, 1);
+        for (DiscussPost discussPost : list) {
+            discussPost.setCreateTime(new Date());
+            discussPostMapper.insertDiscussPost(discussPost);
+
+        }
+    }
+
 
 
 
