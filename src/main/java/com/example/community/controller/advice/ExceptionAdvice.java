@@ -19,7 +19,7 @@ import java.io.PrintWriter;
  * @create: 2023-11-17 11:58
  **/
 
-//@ControllerAdvice(annotations = Controller.class)
+@ControllerAdvice(annotations = Controller.class)
 public class ExceptionAdvice {
 
     private static final Logger logger = LoggerFactory.getLogger(ExceptionAdvice.class);
