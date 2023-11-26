@@ -1,6 +1,8 @@
 package com.example.community;
 
+import com.example.community.entity.Message;
 import com.example.community.entity.User;
+import com.example.community.mapper.MessageMapper;
 import com.example.community.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @program: community
@@ -21,6 +24,9 @@ import java.util.Date;
 public class MapperTest {
     @Autowired
     UserMapper userMapper;
+
+    @Autowired
+    MessageMapper messageMapper;
 
     @Test
     void selectTest(){
@@ -49,7 +55,23 @@ public class MapperTest {
         System.out.println(userMapper.updateStatus(153, 1));
         System.out.println(userMapper.updateHeader(153, "http://images.nowcoder.com/head/199t.png"));
         System.out.println(userMapper.updatePassword(153, "1234"));
+    }
 
-
+    @Test
+    public void MessageMapperTest(){
+        List<Message> list = messageMapper.selectConversations(111, 0, 20);
+        for (Message message : list) {
+            System.out.println(message);
+        }
+        int count = messageMapper.selectConversationCount(111);
+        System.out.println(count);
+        list = messageMapper.selectLetters("111_112",0,10);
+        for (Message message : list) {
+            System.out.println(message);
+        }
+        count = messageMapper.selectLettersCount("111_112");
+        System.out.println(count);
+        count = messageMapper.selectLettersUnreadCount(131,"111_131");
+        System.out.println(count);
     }
 }
